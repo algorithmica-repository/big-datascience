@@ -1,0 +1,60 @@
+sqoop list-tables --connect jdbc:mysql://192.168.1.100:3306/test --username algo --password algo
+
+sqoop list-databases --connect jdbc:mysql://192.168.1.100:3306/test --username algo --password algo
+
+Import into HDFS
+----------------
+sqoop import --connect jdbc:mysql://192.168.1.100:3306/sakila --table actor --username algo --password algo --target-dir /user/cloudera/actor
+           or
+sqoop --options-file optionsimp.txt --table actor --target-dir /user/cloudera/actor-tmp1
+
+sqoop --options-file optionsimp1.txt --warehouse-dir /user/cloudera/enron
+
+sqoop --options-file optionsimp.txt --table actor --where "actor_id > 150" --columns "actor_id,first_name" --target-dir /user/cloudera/sqoop-tmp1
+         or
+sqoop --options-file optionsimp.txt --query 'select actor_id,first_name from actor where actor_id > 150 and $CONDITIONS' -split-by actor_id  --target-dir /user/cloudera/actor-tmp2
+
+sqoop --options-file optionsimp.txt --query 'select actor_id,first_name from actor where $CONDITIONS' -split-by actor_id -z --target-dir /user/cloudera/sqoop-tmp4
+
+sqoop --options-file optionsimp.txt --query 'select actor_id,first_name from actor where $CONDITIONS' -split-by actor_id \
+--fields-terminated-by '\t' --lines-terminated-by '\n' --target-dir /user/cloudera/actor_tmp4
+
+
+sqoop --options-file optionsimp.txt --query 'select actor_id,first_name from actor where actor_id <= 50 and $CONDITIONS'  -split-by actor_id  --target-dir /user/cloudera/actor-tmp5
+
+sqoop --options-file optionsimp.txt --query 'select actor_id,first_name from actor where $CONDITIONS' \
+--check-column actor_id \
+--incremental append \
+--last-value 50 \
+-split-by actor_id  \
+--target-dir /user/cloudera/actor_tmp5
+
+
+Import into HIVE
+----------------
+sqoop --options-file optionsimp.txt --query 'select actor_id,first_name from actor where $CONDITIONS' -split-by actor_id \
+--fields-terminated-by '\t' --lines-terminated-by '\n'  --hive-import --create-hive-table --hive-table actor --target-dir /user/hive/warehouse1
+
+Export from HDFS
+----------------
+sqoop --options-file optionsexp.txt --table actor_exp --staging-table actor_exp_stg --export-dir /user/cloudera/actor-tmp2
+
+sqoop --options-file optionsexp.txt --table actor_exp --update-key actor_id --update-mode updateonly --export-dir /user/cloudera/actor-tmp2 
+
+sqoop --options-file optionsexp.txt --table actor_exp --update-key actor_id --update-mode allow-insert --export-dir /user/cloudera/sqoop-tmp 
+
+Export from HIVE
+----------------
+sqoop --options-file optionsexp.txt --table actor_exp --staging-table actor_exp_stg --fields-terminated-by '\t' --lines-terminated-by '\n' \
+--optionally-enclosed-by '\"' --export-dir /user/hive/warehouse1
+
+
+sqoop Jobs
+----------
+sqoop job --list
+
+sqoop job --create list_tables -- list-tables --connect jdbc:mysql://192.168.1.100:3306/sakila --username sqoop --password sqoop
+
+sqoop job --create enron_load -- import-all-tables --connect jdbc:mysql://192.168.1.100:3306/enron --username algo --password algo  --warehouse-dir /user/cloudera/enron1
+
+sqoop job --exec list_tables

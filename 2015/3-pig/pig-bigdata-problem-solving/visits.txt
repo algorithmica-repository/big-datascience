@@ -1,0 +1,5 @@
+abc	www.abc.com	8.00
+def	www.def.com	8.20
+abc	www.xyz.com	8.40
+xyz	www.abc.com	9.00
+def	www.pqr.com	9.20

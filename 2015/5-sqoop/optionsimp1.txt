@@ -1,0 +1,7 @@
+import-all-tables
+--connect
+jdbc:mysql://192.168.1.100:3306/enron 
+--username
+algo
+--password
+algo

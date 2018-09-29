@@ -1,0 +1,2 @@
+1234|emp_1234@company.com|(first_name_1234,middle_initial_1234,last_name_1234)|{(project1,2),(project2,1),(project3,2)}| [programming#SQL,rdbms#Oracle]
+4567|emp_4567@company.com|(first_name_4567,middle_initial_4567,last_name_4567)|{(project1,2),(project2,1)}|[programming#Java,OS#Linux]

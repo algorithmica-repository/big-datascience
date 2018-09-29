@@ -1,0 +1,5 @@
+user1	20
+user2	25
+user3	25
+user4	25
+user5	17

@@ -1,0 +1,65 @@
+insert overwrite directory '/user/cloudera/test' select * from test;
+insert overwrite local directory '/home/cloudera/test' select * from test;
+insert overwrite table tmp select * from test;
+
+create table test(
+name string, sal int)
+partitioned by (id int)
+row format delimited 
+fields terminated by ',';
+
+describe extended test;
+analyze table test partition(id) compute statistics;
+
+
+If data already segregated
+--------------------------
+load data local inpath '/home/cloudera/hive1/1.txt' into table test partition(id=1);
+or
+alter table test add partition(id=1) location '/user/cloudera/1';
+
+show partitions test;
+alter table test drop partition(id=1);
+
+
+If data is not segregated
+-------------------------
+create external table test_staging(name string,sal int,id int) 
+row format delimited 
+fields terminated by ',' 
+location '/user/cloudera/staging';
+
+loading data into partitioned table from staging table
+------------------------------------------------------
+insert overwrite table test partition(id=1) select name,sal from test_staging where id=1;
+alter table test add partition(id=2) location '/user/cloudera/2';
+
+
+sampling
+--------
+SELECT *FROM test TABLESAMPLE(BUCKET 3 OUT OF 32 ON rand()) s;
+
+
+create table test1(
+name string, sal int)
+partitioned by (id int)
+clustered by(name) into 10 buckets
+row format delimited 
+fields terminated by ',';
+
+set hive.enforce.bucketing = true;  
+load data local inpath '/home/cloudera/hive1/1.txt' into table test1 partition(id=1);
+
+
+
+
+
+dynamic partitions
+------------------
+insert overwrite table test partition(id) select name,sal from test_staging;
+
+Enable dynamic partitions
+-------------------------
+set hive.exec.dynamic.partition=true;
+set hive.exec.dynamic.partition.mode=nonstrict;
+

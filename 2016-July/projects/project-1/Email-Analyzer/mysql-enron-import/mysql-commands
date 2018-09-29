@@ -1,0 +1,9 @@
+create database enron;
+
+use enron;
+
+source /home/cloudera/Email-Analyzer/mysql-enron-import/enron-mysqldum_v5.sql;
+
+show tables;
+
+

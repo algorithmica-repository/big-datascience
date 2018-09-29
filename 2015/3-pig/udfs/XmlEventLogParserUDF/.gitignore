@@ -1,0 +1,31 @@
+.DS_Store
+*.class
+
+# Build Files #
+target
+build
+classes
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Idea Files #
+*.iml
+.idea
+
+# Eclipse Files #
+.settings
+.classpath
+.project
+
+# Archive Files #
+*.gz
+*.tgz
+*.tar
+*.zip
+
+# Log Files #
+*.log
+

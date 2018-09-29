@@ -1,0 +1,4 @@
+hadoop fs -mkdir /user/flume/tweets
+
+flume-ng agent --conf-file flume.conf --name TwitterAgent -Dflume.root.logger=INFO,console
+

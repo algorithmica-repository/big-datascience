@@ -1,0 +1,3 @@
+sudo -u hdfs hadoop fs -chmod 777 /user/spark
+
+sudo -u spark hadoop fs -chmod 777 /user/spark/applicationHistory

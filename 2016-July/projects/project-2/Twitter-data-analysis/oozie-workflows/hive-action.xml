@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workflow-app xmlns="uri:oozie:workflow:0.2" name="hive-add-partition-wf">
+  <start to="hive-add-partition"/>
+
+  <action name="hive-add-partition">
+    <hive xmlns="uri:oozie:hive-action:0.2">
+      <job-tracker>${jobTracker}</job-tracker>
+      <name-node>${nameNode}</name-node>
+      <prepare>
+        <delete path="${workflowRoot}/output-data/hive"/>
+        <mkdir path="${workflowRoot}/output-data"/>
+      </prepare>
+      <job-xml>${workflowRoot}/hive-site.xml</job-xml>
+      <configuration>
+        <property>
+          <name>oozie.hive.defaults</name>
+          <value>${workflowRoot}/hive-site.xml</value>
+        </property>
+      </configuration>
+      <script>add_partition.q</script>
+      <param>JSON_SERDE=${workflowRoot}/lib/hive-serdes-1.0-SNAPSHOT.jar</param>
+      <param>WFINPUT=${wfInput}</param>
+      <param>DATEHOUR=${dateHour}</param>
+    </hive>
+    <ok to="end"/>
+    <error to="fail"/>
+  </action>
+
+  <kill name="fail">
+    <message>Hive failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
+  </kill>
+  <end name="end"/>
+</workflow-app>

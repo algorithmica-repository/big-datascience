@@ -1,0 +1,19 @@
+<catalog>
+
+<book>
+<title>Hadoop Defnitive Guide</title>
+<author>Tom White</author>
+<country>US</country>
+<price>24.90</price>
+<year>2012</year>
+</book>
+
+<book>
+<title>Programming Pig</title>
+<author>Alan Gatese</author>
+<country>USA</country>
+<price>30.90</price>
+<year>2013</year>
+</book>
+
+</catalog>

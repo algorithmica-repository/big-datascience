@@ -1,0 +1,9 @@
+create table emp1(id int, name string, sal int)
+partitioned by (dept tinyint)
+row format delimited
+fields terminated by ',';
+
+//load segregated dept data incrementally into partitioned table
+load data path '' into table emp1 partition(dept=1);
+
+//load intermixed data into partitioned table

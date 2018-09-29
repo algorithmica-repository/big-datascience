@@ -1,0 +1,16 @@
+4000001,Kristina,Chung,56,Pilot
+4000002,Paige,Chen,74,Teacher
+4000003,Sherri,Melton,34,Firefighter
+4000004,Gretchen,Hill,66,Computer hardware engineer
+4000005,Karen,Puckett,74,Lawyer
+4000006,Patrick,Song,42,Veterinarian
+4000007,Elsie,Hamilton,43,Pilot
+4000008,Hazel,Bender,63,Carpenter
+4000009,Malcolm,Wagner,39,Artist
+4000010,Dolores,McLaughlin,60,Writer
+4000011,Francis,McNamara,47,Therapist
+4000012,Sandy,Raynor,26,Writer
+4000013,Marion,Moon,41,Carpenter
+4000014,Beth,Woodard,65,
+4000015,Julia,Desai,49,Musician
+4000016,Jerome,Wallace,52,Pharmacist

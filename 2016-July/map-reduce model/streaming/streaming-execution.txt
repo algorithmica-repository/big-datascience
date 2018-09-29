@@ -1,0 +1,7 @@
+Test python functions locally:
+	echo "foo foo quux labs foo bar quux" | /home/cloudera/wc-mapper.py
+	echo "foo foo quux labs foo bar quux" | /home/cloudera/wc-mapper.py | sort | /home/cloudera/wc-reducer1.py
+	cat /home/cloudera/bible.txt | /home/cloudera/wc-mapper.py | sort | /home/cloudera/wc-reducer.py
+Run streaming job in yarn:
+	yarn jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -file /home/cloudera/wc-mapper.py -mapper /home/cloudera/wc-mapper.py -file /home/cloudera/wc-reducer1.py -reducer /home/cloudera/wc-reducer.py -input /user/cloudera/bible.txt -output /user/cloudera/wc-python2
+	yarn jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -file /home/cloudera/wc-mapper.py -mapper /home/cloudera/wc-mapper.py -file /home/cloudera/wc-reducer.py -reducer /home/cloudera/wc-reducer.py -input /user/cloudera/bible.txt -output /user/cloudera/wc-python1 -jobconf mapred.reduce.tasks=2

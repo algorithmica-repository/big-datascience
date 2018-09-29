@@ -1,0 +1,32 @@
+<assembly>
+    <id>archive</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>${project.basedir}/src</directory>
+            <outputDirectory>/StandardParserUtils/src</outputDirectory>
+            <useDefaultExcludes>true</useDefaultExcludes>
+        </fileSet>
+
+        <fileSet>
+            <directory>${project.basedir}/</directory>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
+            <outputDirectory>/StandardParserUtils</outputDirectory>
+            <useDefaultExcludes>true</useDefaultExcludes>
+        </fileSet>
+
+        <fileSet>
+            <directory>${project.basedir}/target</directory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+            <outputDirectory>/StandardParserUtils/target</outputDirectory>
+            <useDefaultExcludes>true</useDefaultExcludes>
+        </fileSet>
+    </fileSets>
+</assembly>

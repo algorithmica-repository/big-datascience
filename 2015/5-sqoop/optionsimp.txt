@@ -1,0 +1,7 @@
+import
+--connect
+jdbc:mysql://192.168.1.100:3306/sakila 
+--username
+algo
+--password
+algo

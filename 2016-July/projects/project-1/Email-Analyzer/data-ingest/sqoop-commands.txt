@@ -1,0 +1,1 @@
+sqoop --options-file /home/cloudera/Email-Analyzer/data-ingest/optionsimp.txt --warehouse-dir /user/cloudera/enron

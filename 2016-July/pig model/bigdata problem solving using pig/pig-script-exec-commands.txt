@@ -1,0 +1,14 @@
+exec -param input=/home/cloudera/emp.csv -param output=/home/cloudera/recordcount recordcount.pig
+
+exec -param input=/user/cloudera/emp.csv -param output=/user/cloudera/recordcount recordcount.pig
+
+exec -param input=/home/cloudera/test.txt -param output=/home/cloudera/unigramcount unigram-freq.pig
+
+exec -param input1=/user/cloudera/users.csv -param input2=/user/cloudera/pages.csv -param output=/user/cloudera/top2 top-2-urls.pig
+
+explain top2-urls
+
+illustrate top-2-urls
+
+exec -param input=/home/cloudera/test.txt -param output=/home/cloudera/text_normalz normalize.pig
+
